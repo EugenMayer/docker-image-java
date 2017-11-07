@@ -1,25 +1,23 @@
 FROM alpine:3.6
 
 # build parameters
-ARG JAVA_DISTRIBUTION=server-jre
-ARG JAVA_MAJOR_VERSION=8
-ARG JAVA_UPDATE_VERSION=152
-ARG JAVA_BUILD_NUMBER=16
-ARG JAVA_HASH=aa0333dd3019491ca4f6ddbe78cdb6d0
-ARG GLIBC_VERSION=2.26-r0
+ENV JAVA_DISTRIBUTION=server-jre
+ENV JAVA_MAJOR_VERSION=8
+ENV JAVA_UPDATE_VERSION=152
+ENV JAVA_BUILD_NUMBER=16
+ENV JAVA_HASH=aa0333dd3019491ca4f6ddbe78cdb6d0
+
+ENV GLIBC_VERSION=2.26-r0
 
 ENV LANG en_US.UTF-8
 ENV JAVA_VERSION=1.${JAVA_MAJOR_VERSION}.0_${JAVA_UPDATE_VERSION}
 ENV JAVA_HOME=/opt/java/${JAVA_DISTRIBUTION}${JAVA_VERSION}
+ENV JRE_HOME=/opt/java/${JAVA_DISTRIBUTION}${JAVA_VERSION}/jre
 ENV JAVA_DOWNLOAD_URL=http://download.oracle.com/otn-pub/java/jdk/"${JAVA_MAJOR_VERSION}"u"${JAVA_UPDATE_VERSION}"-b"${JAVA_BUILD_NUMBER}"/${JAVA_HASH}/"${JAVA_DISTRIBUTION}"-"${JAVA_MAJOR_VERSION}"u"${JAVA_UPDATE_VERSION}"-linux-x64.tar.gz
 ENV JAVA_OUTPUT_FILE="${JAVA_DISTRIBUTION}"-"${JAVA_MAJOR_VERSION}"u"${JAVA_UPDATE_VERSION}"-linux-x64.tar.gz
 ENV PATH=$PATH:$JAVA_HOME/bin
 
-RUN if  [ -n "${JAVA_HASH}" ]; \
-      then JAVA_HASH_EXTENTION='/'$JAVA_HASH'/' ; \
-      else JAVA_HASH_EXTENTION= ; \
-    fi && \
-    # Install tooling
+RUN # Install tooling
     apk add --update \
       ca-certificates \
       wget curl && \
@@ -45,7 +43,8 @@ RUN if  [ -n "${JAVA_HASH}" ]; \
     # Remove obsolete packages
     apk del \
       ca-certificates \
-      wget && \
+      wget \ 
+      curl && \
     # Clean caches and tmps
     rm -rf /var/cache/apk/* && \
     rm -rf /tmp/* && \
