@@ -11,6 +11,8 @@ ENV GLIBC_VERSION=2.26-r0
 ENV LANG en_US.UTF-8
 ENV JAVA_VERSION=1.${JAVA_MAJOR_VERSION}.0_${JAVA_UPDATE_VERSION}
 ENV JAVA_HOME=/opt/java/${JAVA_DISTRIBUTION}${JAVA_VERSION}
+# this needs to be adjusted for the server-jre, since its located under JAVA_HOME/jre. Important for working on <JRE>/lib/security/cacert 
+ENV JRE_HOME=/opt/java/${JAVA_DISTRIBUTION}${JAVA_VERSION}/jre
 ENV JAVA_DOWNLOAD_URL=http://download.oracle.com/otn-pub/java/jdk/"${JAVA_MAJOR_VERSION}"u"${JAVA_UPDATE_VERSION}"-b"${JAVA_BUILD_NUMBER}"/${JAVA_HASH}/"${JAVA_DISTRIBUTION}"-"${JAVA_MAJOR_VERSION}"u"${JAVA_UPDATE_VERSION}"-linux-x64.tar.gz
 ENV JAVA_OUTPUT_FILE="${JAVA_DISTRIBUTION}"-"${JAVA_MAJOR_VERSION}"u"${JAVA_UPDATE_VERSION}"-linux-x64.tar.gz
 ENV PATH=$PATH:$JAVA_HOME/bin
