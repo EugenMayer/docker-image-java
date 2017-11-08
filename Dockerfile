@@ -19,7 +19,9 @@ ENV PATH=$PATH:$JAVA_HOME/bin
 
 RUN apk add --update \
       ca-certificates \
-      wget curl && \
+      wget \
+      curl \
+      bash && \
     # Install latest glibc
     wget --directory-prefix=/tmp https://github.com/andyshinn/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk && \
     apk add --allow-untrusted /tmp/glibc-${GLIBC_VERSION}.apk && \
