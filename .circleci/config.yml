@@ -12,5 +12,5 @@ jobs:
           command: docker ps
       - run:
           name: build image
-          command: docker build . eugenmayer/java:server-jre8
+          command: docker build . -t eugenmayer/java:server-jre8
 
