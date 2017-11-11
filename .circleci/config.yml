@@ -1,4 +1,4 @@
-build-image:
+build-image: &build-image
   machine: true
   steps:
     - checkout
