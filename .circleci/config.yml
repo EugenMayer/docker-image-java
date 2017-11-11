@@ -19,7 +19,7 @@ jobs:
    deploy:
      <<: *build-image
      steps:
-       - run
+       - run:
          name: deploying
          command: echo deployed
    
