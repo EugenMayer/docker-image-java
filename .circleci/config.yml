@@ -39,9 +39,9 @@ workflows:
       requires:
        - hold
       filters:
-       tags:
-         only: /^v*/
-       branches:
-	 only: master
+        tags:
+          only: /^v*/
+        branches:
+	  only: master
    
 
