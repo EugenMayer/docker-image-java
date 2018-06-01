@@ -1,4 +1,0 @@
-app:
-  build:
-    image: eugenmayer/java:test
-    dockerfile: Dockerfile

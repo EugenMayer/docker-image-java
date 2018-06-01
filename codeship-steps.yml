@@ -1,3 +1,0 @@
-- service: app
-  type: push
-  image_name: eugenmayer/java:test
