@@ -31,7 +31,7 @@ RUN apk add --update \
     apk --allow-untrusted add /tmp/glibc-i18n-${GLIBC_VERSION}.apk && \
     /usr/glibc-compat/bin/localedef -i en_US -f UTF-8 en_US.UTF-8 && \
     # Install oracle java
-    curl --silent --location --retry 3 --cacert /etc/ssl/certs/ca-cert-GeoTrust_Global_CA.pem \
+    curl --show-error --silent --location --retry 3 \
     	--header "Cookie: oraclelicense=accept-securebackup-cookie;" \
     	${JAVA_DOWNLOAD_URL} \
     	-o /tmp/${JAVA_OUTPUT_FILE} && \
